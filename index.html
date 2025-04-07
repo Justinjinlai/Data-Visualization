@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Data Visualization Tutorial - Justin</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 30px;
+      background-color: #f5f5f5;
+    }
+    h1 {
+      margin-bottom: 10px;
+    }
+    canvas {
+      max-width: 600px;
+      margin: 20px auto;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>NYC Landmark Visitors</h1>
+  <p>Chart created by Justin</p>
+
+  <div>
+    <h2>Doughnut Chart - Daily Visitors</h2>
+    <canvas id="doughnutChart"></canvas>
+  </div>
+
+  <div>
+    <h2>Horizontal Bar Chart - Daily Visitors</h2>
+    <canvas id="barChart"></canvas>
+  </div>
+
+  <script>
+    const labels = [
+      "Central Park",
+      "Statue of Liberty",
+      "Empire State Building",
+      "Brooklyn Bridge",
+      "Times Square",
+      "Met Museum",
+      "Rockefeller Center"
+    ];
+
+    const dataValues = [10000, 8500, 7900, 6500, 12000, 7300, 6800];
+
+    // Doughnut Chart
+    const doughnutCtx = document.getElementById('doughnutChart').getContext('2d');
+    new Chart(doughnutCtx, {
+      type: 'doughnut',
+      data: {
+        labels: labels,
+        datasets: [{
+          label: 'Daily Visitors',
+          data: dataValues,
+          backgroundColor: [
+            '#FF6384', '#36A2EB', '#FFCE56', '#8E44AD',
+            '#1ABC9C', '#F39C12', '#D35400'
+          ]
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          title: {
+            display: true,
+            text: 'Daily Visitors to NYC Landmarks (by Justin)'
+          }
+        }
+      }
+    });
+
+    // Horizontal Bar Chart
+    const barCtx = document.getElementById('barChart').getContext('2d');
+    new Chart(barCtx, {
+      type: 'bar',
+      data: {
+        labels: labels,
+        datasets: [{
+          label: 'Daily Visitors',
+          data: dataValues,
+          backgroundColor: '#3498db'
+        }]
+      },
+      options: {
+        indexAxis: 'y',
+        responsive: true,
+        plugins: {
+          title: {
+            display: true,
+            text: 'NYC Landmark Popularity - Horizontal Bar (by Justin)'
+          }
+        },
+        scales: {
+          x: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
